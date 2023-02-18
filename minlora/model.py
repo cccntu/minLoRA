@@ -56,7 +56,7 @@ class LoRAParametrization(nn.Module):
 
     @classmethod
     def from_embedding(cls, layer, rank=4):
-        fan_out, fan_in = layer.weight.shape
+        fan_in, fan_out = layer.weight.shape
         return cls(fan_in, fan_out, fan_in_fan_out=True, rank=rank)
 
 

@@ -50,8 +50,7 @@ optimizer = torch.optim.AdamW(parameters, lr=1e-3)
 # ...
 
 # Step 4: export the LoRA parameters
-state_dict = model.state_dict()
-lora_state_dict = {k: v for k, v in state_dict.items() if name_is_lora(k)}
+lora_state_dict = get_lora_state_dict(model)
 ```
 
 ### Loading and Inferencing with minLoRA

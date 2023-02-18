@@ -14,6 +14,7 @@ A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/
 ## Demo
 
 - `demo.ipynb` shows the basic usage of the library
+- `advanced_usage.ipynb` shows how you can add LoRA to other layers such as embedding, and how to tie weights
 
 ## Library Installation
 
@@ -94,5 +95,5 @@ Y2 = select_lora(model, 2)(x)
 
 
 ### TODO
-- [ ] A notebook to show how to configure LoRA parameters
+- [-] A notebook to show how to configure LoRA parameters
 - [ ] Real training & inference examples

@@ -16,6 +16,10 @@ A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/
 - `demo.ipynb` shows the basic usage of the library
 - `advanced_usage.ipynb` shows how you can add LoRA to other layers such as embedding, and how to tie weights
 
+## Examples
+
+- Finetuning GPT using LoRA + nanoGPT: https://github.com/cccntu/LoRAnanoGPT/pull/1/files
+
 ## Library Installation
 
 If you want to `import minlora` into your project:
@@ -95,5 +99,5 @@ Y2 = select_lora(model, 2)(x)
 
 
 ### TODO
-- [-] A notebook to show how to configure LoRA parameters
-- [ ] Real training & inference examples
+- [x] A notebook to show how to configure LoRA parameters
+- [x] Real training & inference examples

@@ -85,16 +85,16 @@ def apply_lora(layer, register=True, merge=False, lora_config=default_lora_confi
                 parametrize.remove_parametrizations(layer, attr_name, leave_parametrized=merge)
 
 
-def apply_lora_by_name(model, target_module_names, register=True, merge=False, lora_config=default_lora_config):
-    """Add LoRA parameterization to specific layers in a model by names"""
-    for name, layer in model.named_modules():
-        if any([m in name for m in target_module_names]):
-            add_lora(layer, register=register, merge=merge, lora_config=lora_config)
-
-
 def add_lora(model, lora_config=default_lora_config):
     """add lora parametrization to all layers in a model. Calling it twice will add lora twice"""
     model.apply(partial(apply_lora, lora_config=lora_config))
+
+
+def add_lora_by_name(model, target_module_names, lora_config=default_lora_config):
+    """Add LoRA parameterization to specific layers in a model by names"""
+    for name, layer in model.named_modules():
+        if any([m in name for m in target_module_names]):
+            add_lora(layer, lora_config=lora_config)
 
 
 def merge_lora(model):

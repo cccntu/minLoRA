@@ -33,7 +33,7 @@ class LoRAParametrization(nn.Module):
         return A * self.lora_dropout(self.lora_dropout_mask)
 
     def lora_forward(self, X):
-        return X + torch.mm(*self.swap((self.lora_B, self.dropout_fn(self.lora_A)))).view(X.shape) * self.scaling
+        return X + torch.matmul(*self.swap((self.lora_B, self.dropout_fn(self.lora_A)))).view(X.shape) * self.scaling
 
     def forward(self, X):
         return self.forward_fn(X)
@@ -88,6 +88,13 @@ def apply_lora(layer, register=True, merge=False, lora_config=default_lora_confi
 def add_lora(model, lora_config=default_lora_config):
     """add lora parametrization to all layers in a model. Calling it twice will add lora twice"""
     model.apply(partial(apply_lora, lora_config=lora_config))
+
+
+def add_lora_by_name(model, target_module_names, lora_config=default_lora_config):
+    """Add LoRA parameterization to specific layers in a model by names"""
+    for name, layer in model.named_modules():
+        if any([m in name for m in target_module_names]):
+            add_lora(layer, lora_config=lora_config)
 
 
 def merge_lora(model):
